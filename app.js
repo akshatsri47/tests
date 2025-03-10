@@ -14,6 +14,13 @@ if (!fs.existsSync(downloadFolder)) {
     fs.mkdirSync(downloadFolder, { recursive: true });
 }
 
+app.get('/', (req, res) => {
+    res.send(`
+        <h1>File Download Service</h1>
+        <p><a href="/download-files">Click here to download files</a></p>
+    `);
+});
+
 app.get('/download-files', (req, res) => {
     // Create a ZIP archive
     const archive = archiver('zip', { zlib: { level: 9 } });
